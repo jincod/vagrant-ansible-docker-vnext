@@ -1,0 +1,8 @@
+---
+- name: Apply common configuration to all nodes
+  hosts: all
+  user: vagrant
+  sudo: true
+  roles:
+    - role: docker
+    - role: project

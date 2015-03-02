@@ -1,0 +1,10 @@
+---
+
+- name: Add docker.io repo
+  apt_repository: repo='deb https://get.docker.io/ubuntu docker main' state=present validate_certs=no
+
+- name: Add docker.io repo key
+  apt_key: url=https://get.docker.io/gpg state=present
+
+- name: Install docker
+  apt: name=lxc-docker update_cache=yes state=installed

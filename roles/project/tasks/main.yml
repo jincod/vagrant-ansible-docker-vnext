@@ -1,0 +1,17 @@
+- name: Create dists
+  file: path=/var/projects/app state=directory
+
+- name: Copy dockerfile
+  copy: src={{ item }} dest="/var/projects/{{ item }}" directory_mode=yes
+  with_items:
+    - ['Dockerfile', 'app/project.json', 'app/Startup.cs']
+
+- name: Build hello-web image
+  shell: docker build -t hello-web .
+  args:
+    chdir: /var/projects
+
+- name: Run hello-web container
+  shell: docker run -t -d -p 3002:5004 hello-web
+  args:
+    chdir: /var/projects
