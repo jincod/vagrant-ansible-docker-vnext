@@ -1,9 +1,8 @@
 FROM microsoft/aspnet
 
-COPY ./app /root/app
-WORKDIR /root/app
-RUN ["kpm", "restore"]
+COPY ./app /app
+WORKDIR /app
+RUN ["dnu", "restore"]
 
 EXPOSE 5004
-CMD []
-ENTRYPOINT ["k", "kestrel"]
+ENTRYPOINT ["dnx", "-p", "project.json", "kestrel"]

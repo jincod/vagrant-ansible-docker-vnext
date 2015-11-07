@@ -1,3 +1,5 @@
+---
+
 - name: Create dists
   file: path=/var/projects/app state=directory
 
